@@ -80,16 +80,16 @@ export default function NavTabs() {
           <LinkTab label="Byron" href="/byron" {...a11yProps(3)} />
         </Tabs>
       </AppBar>
-      <TabPanel value={value} index={0}>
+      <TabPanel value={value} index={0} style={{height: "100%"}}>
         Home
       </TabPanel>
-      <TabPanel value={value} index={1}>
-        <PlayerInterface name='Jason Ladias' text="The best player" image={require('../images/jason.jpg')}/>
+      <TabPanel value={value} index={1} style={{height: "100%"}}>
+        <PlayerInterface name='Jason Ladias' text="The best player Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum." image={require('../images/jason.jpg')}/>
       </TabPanel>
-      <TabPanel value={value} index={2}>
+      <TabPanel value={value} index={2} style={{height: "100%"}}>
       <PlayerInterface name='Savvas Vezyridis' text="The experienced player" image={require('../images/byron.jpg')}/>
       </TabPanel>
-      <TabPanel value={value} index={3}>
+      <TabPanel value={value} index={3} style={{height: "100%"}}>
       <PlayerInterface name='Byron Tasioulas' text="The worst player" image={require('../images/byron.jpg')}/>
       </TabPanel>
     </div>

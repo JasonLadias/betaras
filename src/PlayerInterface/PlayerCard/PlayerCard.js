@@ -8,10 +8,11 @@ import Typography from '@material-ui/core/Typography'
 
 const useStyles = makeStyles({
     root: {
-        maxWidth: 300,
+        width: '30% ',
+        height: 800
     },
     media: {
-        height: 200,
+        height: 500,
     },
 })
 
@@ -31,7 +32,7 @@ const PlayerInterface = (props) => {
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
                         {props.text}
-                </Typography>
+                    </Typography>
                 </CardContent>
             </CardActionArea>
         </Card>
