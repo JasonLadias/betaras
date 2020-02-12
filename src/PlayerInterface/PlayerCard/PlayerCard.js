@@ -7,19 +7,19 @@ import CardMedia from '@material-ui/core/CardMedia'
 import Typography from '@material-ui/core/Typography'
 
 const useStyles = makeStyles({
-    root: {
-        width: '30% ',
-        height: 800
+    root:{
+        width: '30vw',
+        height: '45vw'
     },
     media: {
-        height: 500,
+        height: 350
     },
 })
 
 const PlayerInterface = (props) => {
     const classes = useStyles()
     return (
-        <Card className={classes.root}>
+        <Card className={classes.root} elevation={9}>
             <CardActionArea>
                 <CardMedia
                     className={classes.media}

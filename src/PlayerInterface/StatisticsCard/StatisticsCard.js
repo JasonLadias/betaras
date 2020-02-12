@@ -8,17 +8,17 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
   root: {
-    width: 300,
-    height: 300
+    width: '15vw',
+    height: '20vw'
   },
   media: {
-    height: 150,
+    height: '15vw',
   },
   pie: {
-    height: 220
+    height: '14vw'
   },
   title: {
-    height: 100
+    height: '3vw'
   }
 })
 
@@ -26,16 +26,16 @@ const StatisticsCard = (props) => {
   const classes = useStyles()
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} elevation={3}>
       <CardActionArea>
         <PieChart
           className={classes.pie}
           data={[
-            { title: 'Won', value: 56, color: '#32CD32'},
-            { title: 'Lost', value: 100 - 56, color: '#C13C37'}
+            { title: 'Won', value: props.percentage, color: '#32CD32'},
+            { title: 'Lost', value: 100 - props.percentage, color: '#C13C37'}
           ]} />
         <CardContent className={classes.title}>
-          <Typography gutterBottom variant="h5" component="h2" align="center">Winning Percentage</Typography>
+        <Typography gutterBottom variant="h5" component="h3" align="center">{props.text}</Typography>
         </CardContent>
       </CardActionArea>
     </Card>
