@@ -86,21 +86,21 @@ export default function NavTabs() {
       <TabPanel value={value} index={1} style={{ height: "100%" }}>
         <PlayerInterface
           name='Jason Ladias'
-          text="The best player Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+          text="Jason is a very rigid and solid player. His predictions are pretty accurate and even his false predictions are not far from being accurate."
           image={require('../images/jason.jpg')}
           URI={'jason'} />
       </TabPanel>
       <TabPanel value={value} index={2} style={{ height: "100%" }}>
         <PlayerInterface
           name='Savvas Vezyridis' 
-          text="The experienced player" 
-          image={require('../images/byron.jpg')}
+          text="Savvas is an old and experienced player. He can find very delicate bets although his arrogance is his weak point" 
+          image={require('../images/savvas.jpg')}
           URI={'savvas'} />
       </TabPanel>
       <TabPanel value={value} index={3} style={{ height: "100%" }}>
         <PlayerInterface 
         name='Byron Tasioulas' 
-        text="The worst player" 
+        text="Byron is capable for the best and the worst. He can be described as an unstable player having his ups and downs" 
         image={require('../images/byron.jpg')} 
         URI={'byron'}/>
       </TabPanel>

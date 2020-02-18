@@ -11,11 +11,19 @@ import axios from 'axios'
 const PlayerInterface = (props) => {
 
     const [bets, setBets] = useState([])
+    const [mostWonTeam, setMostWonTeam] = useState('')
+    const [mostWonTimes, setMostWonTimes] = useState(0)
+    const [mostPlayedTeam, setMostPlayedTeam] = useState('')
+    const [mostPlayedTimes, setMostPlayedTimes] = useState(0)
+    const [mostWonLeague, setMostWonLeague] = useState('')
+    const [mostWonLeagueTimes, setMostWonLeagueTimes] = useState(0)
+    const [mostPlayedLeague, setMostPlayedLeague] = useState('')
+    const [mostPlayedLeagueTimes, setMostPlayedLeagueTimes] = useState(0)
     const [percentage, setPercentage] = useState(0)
     const [lastWeek, setLastWeek] = useState(0)
     const [last10, setLast10] = useState(0)
 
-
+    console.log(bets)
     useEffect(() => {
         axios.get(`http://localhost:8080/bets/${props.URI}`)
             .then((res) => {
@@ -23,6 +31,38 @@ const PlayerInterface = (props) => {
                 calculateWinningPercentage(res.data.result)
                 calculateLastWeek(res.data.result)
                 calculateLast10(res.data.result)
+            })
+            .catch((er) => {
+                console.log(er)
+            })
+        axios.get(`http://localhost:8080/bets/${props.URI}/most-won`)
+            .then((res) => {
+                setMostWonTeam(res.data.result[0].team)
+                setMostWonTimes(res.data.result[0].counter2)
+            })
+            .catch((er) => {
+                console.log(er)
+            })
+        axios.get(`http://localhost:8080/bets/${props.URI}/most-played`)
+            .then((res) => {
+                setMostPlayedTeam(res.data.result[0].team)
+                setMostPlayedTimes(res.data.result[0].counter2)
+            })
+            .catch((er) => {
+                console.log(er)
+            })
+        axios.get(`http://localhost:8080/bets/${props.URI}/most-won-league`)
+            .then((res) => {
+                setMostWonLeague(res.data.result[0].League)
+                setMostWonLeagueTimes(res.data.result[0].Counter)
+            })
+            .catch((er) => {
+                console.log(er)
+            })
+        axios.get(`http://localhost:8080/bets/${props.URI}/most-played-league`)
+            .then((res) => {
+                setMostPlayedLeague(res.data.result[0].League)
+                setMostPlayedLeagueTimes(res.data.result[0].Counter)
             })
             .catch((er) => {
                 console.log(er)
@@ -55,8 +95,8 @@ const PlayerInterface = (props) => {
         }, 0)
         let num = Number(((won / newArray.length) * 100).toFixed(2))
         setLast10(num)
-        console.log(num)
     }
+
 
     return (
         <Grid container direction="row" justify="flex-start" alignItems="stretch" spacing={4}>
@@ -64,7 +104,15 @@ const PlayerInterface = (props) => {
                 <PlayerCard
                     name={props.name}
                     image={props.image}
-                    text={props.text} />
+                    text={props.text}
+                    mostPlayedTeam={mostPlayedTeam}
+                    mostPlayedTimes={mostPlayedTimes}
+                    mostWonTeam={mostWonTeam}
+                    mostWonTimes={mostWonTimes}
+                    mostPlayedLeague={mostPlayedLeague}
+                    mostPlayedLeagueTimes={mostPlayedLeagueTimes}
+                    mostWonLeague={mostWonLeague}
+                    mostWonLeagueTimes={mostWonLeagueTimes} />
             </Grid>
 
             <Grid item>
@@ -73,18 +121,18 @@ const PlayerInterface = (props) => {
                         <Grid container direction="row" justify="space-evenly" spacing={10}>
                             <Grid item >
                                 <StatisticsCard
-                                    percentage={percentage} 
-                                    text='Overall'/>
+                                    percentage={percentage}
+                                    text='Overall' />
                             </Grid>
                             <Grid item >
-                                <StatisticsCard 
-                                percentage={lastWeek} 
-                                text= "Last Week"/>
+                                <StatisticsCard
+                                    percentage={lastWeek}
+                                    text="Last Week" />
                             </Grid>
                             <Grid item >
-                                <StatisticsCard 
-                                percentage={last10} 
-                                text= 'Last 10 Matches'/>
+                                <StatisticsCard
+                                    percentage={last10}
+                                    text='Last 10 Matches' />
                             </Grid>
                         </Grid>
                     </Grid>

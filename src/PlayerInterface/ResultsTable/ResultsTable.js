@@ -97,6 +97,7 @@ export default function ResultsTable(props) {
         setPage(0);
     };
 
+    
     return (
         <TableContainer component={Paper} elevation={3}>
             <Table className={classes.table} size="small" aria-label="simple table">
