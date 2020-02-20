@@ -11,19 +11,16 @@ import axios from 'axios'
 const PlayerInterface = (props) => {
 
     const [bets, setBets] = useState([])
-    const [mostWonTeam, setMostWonTeam] = useState('')
-    const [mostWonTimes, setMostWonTimes] = useState(0)
     const [mostPlayedTeam, setMostPlayedTeam] = useState('')
     const [mostPlayedTimes, setMostPlayedTimes] = useState(0)
-    const [mostWonLeague, setMostWonLeague] = useState('')
-    const [mostWonLeagueTimes, setMostWonLeagueTimes] = useState(0)
     const [mostPlayedLeague, setMostPlayedLeague] = useState('')
     const [mostPlayedLeagueTimes, setMostPlayedLeagueTimes] = useState(0)
     const [percentage, setPercentage] = useState(0)
     const [lastWeek, setLastWeek] = useState(0)
     const [last10, setLast10] = useState(0)
+    const [leagueStats, setLeagueStats] = useState([])
+    const [teamStats, setTeamStats] = useState([])
 
-    console.log(bets)
     useEffect(() => {
         axios.get(`http://localhost:8080/bets/${props.URI}`)
             .then((res) => {
@@ -31,14 +28,6 @@ const PlayerInterface = (props) => {
                 calculateWinningPercentage(res.data.result)
                 calculateLastWeek(res.data.result)
                 calculateLast10(res.data.result)
-            })
-            .catch((er) => {
-                console.log(er)
-            })
-        axios.get(`http://localhost:8080/bets/${props.URI}/most-won`)
-            .then((res) => {
-                setMostWonTeam(res.data.result[0].team)
-                setMostWonTimes(res.data.result[0].counter2)
             })
             .catch((er) => {
                 console.log(er)
@@ -51,14 +40,6 @@ const PlayerInterface = (props) => {
             .catch((er) => {
                 console.log(er)
             })
-        axios.get(`http://localhost:8080/bets/${props.URI}/most-won-league`)
-            .then((res) => {
-                setMostWonLeague(res.data.result[0].League)
-                setMostWonLeagueTimes(res.data.result[0].Counter)
-            })
-            .catch((er) => {
-                console.log(er)
-            })
         axios.get(`http://localhost:8080/bets/${props.URI}/most-played-league`)
             .then((res) => {
                 setMostPlayedLeague(res.data.result[0].League)
@@ -67,6 +48,20 @@ const PlayerInterface = (props) => {
             .catch((er) => {
                 console.log(er)
             })
+        axios.get(`http://localhost:8080/bets/${props.URI}/league-stats`)
+            .then((res) => {
+                setLeagueStats(res.data.result)
+            })
+            .catch((er) => {
+                console.log(er)
+        })
+        axios.get(`http://localhost:8080/bets/${props.URI}/team-stats`)
+            .then((res) => {
+                setTeamStats(res.data.result)
+            })
+            .catch((er) => {
+                console.log(er)
+        })
     }, [])
 
     const calculateWinningPercentage = (betsarray) => {
@@ -97,7 +92,7 @@ const PlayerInterface = (props) => {
         setLast10(num)
     }
 
-
+    console.log(teamStats)
     return (
         <Grid container direction="row" justify="flex-start" alignItems="stretch" spacing={4}>
             <Grid item>
@@ -106,13 +101,11 @@ const PlayerInterface = (props) => {
                     image={props.image}
                     text={props.text}
                     mostPlayedTeam={mostPlayedTeam}
+                    teamStats={teamStats}
+                    leagueStats={leagueStats}
                     mostPlayedTimes={mostPlayedTimes}
-                    mostWonTeam={mostWonTeam}
-                    mostWonTimes={mostWonTimes}
                     mostPlayedLeague={mostPlayedLeague}
-                    mostPlayedLeagueTimes={mostPlayedLeagueTimes}
-                    mostWonLeague={mostWonLeague}
-                    mostWonLeagueTimes={mostWonLeagueTimes} />
+                    mostPlayedLeagueTimes={mostPlayedLeagueTimes} />
             </Grid>
 
             <Grid item>

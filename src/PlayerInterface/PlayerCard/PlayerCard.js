@@ -19,7 +19,6 @@ const useStyles = makeStyles({
 
 const PlayerInterface = (props) => {
     const classes = useStyles()
-    console.log(props.mostWon)
     return (
         <Card className={classes.root} elevation={9}>
             <CardActionArea>
@@ -38,8 +37,9 @@ const PlayerInterface = (props) => {
                     <br/>
                     <Typography gutterBottom variant="h5" component="h5">
                         Player Statistics
-                    </Typography>
-                    <Divider />
+                    </Typography>         
+                    <br />
+                    <Divider /> 
                     <Typography variant="body2" component="p">
                         Most Played Team : {props.mostPlayedTeam}
                     </Typography>
@@ -48,11 +48,20 @@ const PlayerInterface = (props) => {
                     </Typography>
                     <Divider />
                     <Typography variant="body2" component="p">
-                        Top Winning Team : {props.mostWonTeam}
+                        Top Performing Team : {props.teamStats[0] !== undefined? props.teamStats[0].Team : null}
                     </Typography>
                     <Typography variant="body2" component="p">
-                        Times Won : {props.mostWonTimes}
+                        Percentage : {props.teamStats[0] !== undefined? (props.teamStats[0].Stats)*100 : null} %
                     </Typography>
+                    <Divider />
+                    <Typography variant="body2" component="p">
+                        Worst Performing Team : {props.teamStats[props.teamStats.length-1] !== undefined? props.teamStats[props.teamStats.length-1].Team : null} 
+                    </Typography>
+                    <Typography variant="body2" component="p">
+                        Percentage : {props.teamStats[props.teamStats.length-1] !== undefined? ((props.teamStats[props.teamStats.length-1].Stats)===null? 0 :props.teamStats[props.teamStats.length-1].Stats)*100 : null} %
+                    </Typography>
+                    <Divider />
+                    <br />
                     <Divider />
                     <Typography variant="body2" component="p">
                         Most Played League : {props.mostPlayedLeague}
@@ -62,12 +71,20 @@ const PlayerInterface = (props) => {
                     </Typography>
                     <Divider />
                     <Typography variant="body2" component="p">
-                        Top Winning League : {props.mostWonLeague}
+                        Top Performing League : {props.leagueStats[0] !== undefined ? props.leagueStats[0].League:null}
                     </Typography>
                     <Typography variant="body2" component="p">
-                        Times Won : {props.mostWonTimes}
+                        Percentage : {props.leagueStats[0] !== undefined ? props.leagueStats[0].Stats * 100 :null} %
                     </Typography>
                     <Divider />
+                    <Typography variant="body2" component="p">
+                        Worst Performing League : {props.leagueStats[props.leagueStats.length -1] !== undefined ? props.leagueStats[props.leagueStats.length -1].League:null}
+                    </Typography>
+                    <Typography variant="body2" component="p">
+                        Percentage : {props.leagueStats[props.leagueStats.length -1] !== undefined ? (props.leagueStats[props.leagueStats.length -1].Stats===null?0:props.leagueStats[props.leagueStats.length -1].Stats) * 100 :null} %
+                    </Typography>
+                    <Divider />
+                    
                 </CardContent>
             </CardActionArea>
         </Card>
