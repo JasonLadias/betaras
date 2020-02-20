@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import PlayerCard from './PlayerCard/PlayerCard'
 import StatisticsCard from './StatisticsCard/StatisticsCard'
 import ResultsTable from './ResultsTable/ResultsTable'
-import { makeStyles } from '@material-ui/core/styles'
 import { Grid } from '@material-ui/core'
 import axios from 'axios'
 
